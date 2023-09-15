@@ -47,10 +47,16 @@ jobs:
         id: plandev
         run: terraform plan -no-color
 
+      - name: Terraform Plan
+        id: plandev
+        run: |
+          terraform plan -no-color > tfplan.txt
+          echo "TFPLAN=$(cat tfplan.txt)" >> $GITHUB_STATE
+
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+          PLAN: "terraform\n${{ env.GITHUB_STATE }}"
         with:
           github-token: ${{ secrets.TOKEN_GITHUB}}
           script: |
