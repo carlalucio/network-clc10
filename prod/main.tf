@@ -12,9 +12,9 @@ provider "aws" {
     
     default_tags {
         tags = {
-            Owner   = "Carla Lucio"
+            Owner   = "CarlaLucio"
             Env     = "Producao"
-            Class   = "CLC10"
+            Class   = "MBA-CLC10"
         }
     }
   # Configuration options
